@@ -12,6 +12,8 @@ and any other line/station/direction can be picked from the controls.
 
 - All 10 heavy-rail lines and every station code from the official
   [Next Train API data dictionary](https://opendata.mtr.com.hk/doc/Next_Train_DataDictionary_v1.7.pdf)
+- English / Traditional Chinese toggle (official MTR names, `lang` passed
+  through to the API; auto-detected from your browser language)
 - Direction tabs with live destination labels (e.g. *To Hong Kong*), including
   EAL extras: *via Racecourse* and arrival/departure indicators
 - Ticking `m:ss` countdowns that stay accurate against the server clock

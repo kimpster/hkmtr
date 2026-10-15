@@ -80,6 +80,32 @@ h1 {
   white-space: nowrap;
 }
 
+/* language toggle */
+.langToggle {
+  flex: none;
+  display: flex;
+  gap: 2px;
+  padding: 2px;
+  border-radius: 11px;
+  background: var(--surface2);
+  margin-right: 6px;
+}
+.langBtn {
+  border: none;
+  border-radius: 9px;
+  padding: 6px 10px;
+  min-height: 32px;
+  background: transparent;
+  color: var(--muted);
+  font: 700 12.5px/1 inherit;
+  cursor: pointer;
+}
+.langBtn.active {
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: 0 1px 4px rgb(0 0 0 / 0.25);
+}
+
 .iconbtn {
   flex: none;
   width: 38px;
@@ -112,13 +138,13 @@ h1 {
 .chip {
   flex: none;
   min-height: 36px;
-  padding: 7px 14px;
+  padding: 8px 13px;
   border: 1.5px solid color-mix(in srgb, var(--line) 55%, transparent);
   border-radius: 999px;
   background: transparent;
   color: var(--text);
-  font: 700 14px/1 inherit;
-  letter-spacing: 0.4px;
+  font: 600 13px/1 inherit;
+  letter-spacing: 0.2px;
   cursor: pointer;
 }
 .chip.active {
