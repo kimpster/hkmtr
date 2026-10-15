@@ -207,7 +207,7 @@ h1 {
   width: 100%;
   background: var(--line);
   transform-origin: left;
-  animation: sweep 15s linear forwards;
+  animation: sweep 60s linear forwards;
 }
 @keyframes sweep { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 
@@ -251,6 +251,8 @@ h1 {
   border-color: color-mix(in srgb, var(--line) 45%, var(--track));
   border-left: 5px solid var(--line);
 }
+
+.card.gone { opacity: 0.35; }
 
 .cardLeft { min-width: 0; }
 
@@ -330,6 +332,6 @@ h1 {
 @media (max-width: 380px) { .statusMeta { display: none; } }
 
 @media (prefers-reduced-motion: reduce) {
-  .refreshTrack i { animation-duration: 15s; }
+  .refreshTrack i { animation-duration: 60s; }
   * { transition: none !important; }
 }

@@ -16,7 +16,7 @@ and any other line/station/direction can be picked from the controls.
   EAL extras: *via Racecourse* and arrival/departure indicators
 - Ticking `m:ss` countdowns that stay accurate against the server clock
   (handles device clock skew and non-HK timezones)
-- Auto-refresh every 15 s, paused while the tab is hidden; manual refresh button
+- Auto-refresh every minute, paused while the tab is hidden; manual refresh button
 - Delay and special-service-arrangement banners straight from the API
 - Shareable URLs via the hash, e.g. `#AEL/TSY/DOWN`, plus localStorage memory
   of your last view

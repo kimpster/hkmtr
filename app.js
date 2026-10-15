@@ -31,7 +31,7 @@ const DIR_DESTS = {
 };
 
 const API = "https://rt.data.gov.hk/v1/transport/mtr/getSchedule.php";
-const REFRESH_MS = 15000;
+const REFRESH_MS = 60000;
 const STORE_KEY = "hknexttrain.state.v1";
 
 /* Any station code -> name, across all lines (dest codes may sit on
@@ -239,10 +239,12 @@ function emptyCard(title, sub) {
 function tickCountdowns() {
   const now = serverNow();
   for (const cd of els.list.querySelectorAll(".countdown")) {
-    const eta = Number(cd.closest(".card").dataset.eta);
-    const v = fmtCountdown(eta - now);
+    const card = cd.closest(".card");
+    const remaining = Number(card.dataset.eta) - now;
+    const v = fmtCountdown(remaining);
     cd.textContent = v;
     cd.classList.toggle("now", v === "Departing");
+    card.classList.toggle("gone", remaining < -30000);
   }
 }
 
@@ -275,7 +277,8 @@ function renderStatus(error) {
   }
   if (!state.ok) { els.statusText.textContent = "Loading…"; els.statusText.className = ""; return; }
   els.statusText.className = state.isdelay === "Y" ? "err" : "";
-  els.statusText.textContent = `Updated ${state.updated || "—"} HKT · ${state.isdelay === "Y" ? "Delayed" : "On time"} · refreshes every 15 s`;
+  const refreshLabel = REFRESH_MS >= 60000 ? `${REFRESH_MS / 60000} min` : `${REFRESH_MS / 1000} s`;
+  els.statusText.textContent = `Updated ${state.updated || "—"} HKT · ${state.isdelay === "Y" ? "Delayed" : "On time"} · refreshes every ${refreshLabel}`;
 }
 
 /* ---------- data ---------- */
