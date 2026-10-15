@@ -228,9 +228,23 @@ function dirLabel(dir) {
   return codes.map(stationName).join(" / ");
 }
 
+/* A direction whose every destination is the station itself lists arrivals
+ * into a terminus, not departures from it — hide it (e.g. the Hong Kong–bound
+ * side while at Hong Kong station). */
+function dirHidden(dir) {
+  const live = [...new Set(state.trains[dir].map((t) => t.dest))];
+  const dests = live.length ? live : DIR_DESTS[state.line][dir];
+  return dests.length > 0 && dests.every((c) => c === state.sta);
+}
+
 function renderTabs() {
   els.tabs.innerHTML = "";
-  for (const dir of ["UP", "DOWN"]) {
+  const visible = ["UP", "DOWN"].filter((d) => !dirHidden(d));
+  if (visible.length && !visible.includes(state.dir)) {
+    state.dir = visible[0];
+    saveState();
+  }
+  for (const dir of visible) {
     const b = document.createElement("button");
     b.type = "button";
     b.className = "tab" + (dir === state.dir ? " active" : "");
@@ -261,7 +275,7 @@ function badge(text, cls) {
 function renderTrains() {
   const line = LINES[state.line];
   const trains = state.trains[state.dir]
-    .filter((t) => t.time)
+    .filter((t) => t.time && t.dest !== state.sta)
     .sort((a, b) => Number(a.seq) - Number(b.seq));
 
   els.list.innerHTML = "";
