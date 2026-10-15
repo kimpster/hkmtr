@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0d1117">
+  <title>HK Next Train — Live MTR arrivals</title>
+  <meta name="description" content="Live MTR train arrival times for every line and station, straight from the official Next Train API. Defaults to Airport Express from Tsing Yi towards Hong Kong.">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top">
+    <div class="brand">
+      <svg class="logo" viewBox="0 0 48 48" aria-hidden="true">
+        <circle cx="24" cy="24" r="17" fill="none" stroke="currentColor" stroke-width="7"/>
+        <rect x="2" y="19" width="44" height="10" rx="3" fill="currentColor"/>
+      </svg>
+      <h1>Next Train</h1>
+      <button id="refresh" class="iconbtn" type="button" aria-label="Refresh now" title="Refresh now">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 5V1L7 6l5 5V7a5 5 0 1 1-5 5H5a7 7 0 1 0 7-7z"/></svg>
+      </button>
+    </div>
+    <nav id="lineChips" class="chips" aria-label="Line"></nav>
+    <label class="staRow">
+      <span class="staLabel">Station</span>
+      <select id="station" aria-label="Station"></select>
+    </label>
+    <div id="tabs" class="tabs" role="tablist" aria-label="Direction"></div>
+    <div class="refreshTrack" aria-hidden="true"><i id="refreshProgress"></i></div>
+  </header>
+
+  <div id="banners" class="banners" aria-live="polite"></div>
+  <main id="list" class="list"></main>
+
+  <footer id="status" class="status">
+    <span id="statusText">Loading…</span>
+    <span class="statusMeta">data.gov.hk Next Train API · unofficial</span>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
